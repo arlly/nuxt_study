@@ -23,6 +23,7 @@
                     GitHub
                 </a>
             </div>
+            <router-link to="/other">Go to Other</router-link>
         </div>
 
     </div>
