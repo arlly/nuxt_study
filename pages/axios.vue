@@ -3,36 +3,17 @@
         <h1>{{ title}}</h1>
         <p>{{ message}}</p>
 
-        <div>
-            <input type="text" v-model="msg" />
-            <button @click="doClick">くりっく</button>
-        </div>
+        <ul v-for="(data, key) in json_data">
+            <li>{{ data.name}} ({{ data.age}} {{ key }})</li>
 
-        <table>
-            <tr>
-                <td>User ID</td>
-                <td>{{ json_data.userId}}</td>
-            </tr>
-            <tr>
-                <td>ID</td>
-                <td>{{ json_data.id}}</td>
-            </tr>
-            <tr>
-                <td>title</td>
-                <td>{{ json_data.title}}</td>
-            </tr>
-            <tr>
-                <td>Body</td>
-                <td>{{ json_data.body}}</td>
-            </tr>
-        </table>
+        </ul>
 
     </section>
 </template>
 
 <script>
     const axios = require('axios');
-    let url = "http://jsonplaceholder.typicode.com/posts/";
+    let url = "https://arlly-vue.firebaseio.com/person.json";
 
     export default {
         name: "axios",
@@ -46,7 +27,7 @@
         },
         async asyncData() {
             let id = 1;
-            let result = await axios.get(url + id);
+            let result = await axios.get(url);
             return { json_data: result.data}
         },
         methods: {
