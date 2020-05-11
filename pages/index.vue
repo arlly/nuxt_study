@@ -3,7 +3,7 @@
         <div>
             <logo/>
             <h1 class="title">
-                nuxt_app by arlly {{now}}
+                {{ title}} nuxt_app by arlly {{now}}
             </h1>
             <h2 class="subtitle">
                 My majestic Nuxt.js project
