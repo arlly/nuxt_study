@@ -25,7 +25,9 @@
                 <router-link to="/other" class="button--grey">Go to Other</router-link>
             </div>
             <hr>
-            <div class="link" v-on:click="doAction">{{ $store.state.message}}<a class="button--grey">Clicked: {{ $store.state.counter }}</a></div>
+            <div class="link" @click="$store.commit('count')" @click.ctrl="$store.commit('reset')">
+              {{ $store.state.message}}<a class="button--grey">Clicked: {{ $store.state.counter }}</a>
+            </div>
         </div>
 
     </div>
@@ -50,12 +52,6 @@
                 var d = new Date();
                 this.now = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
             })
-        },
-        methods: {
-            doAction: function()
-            {
-                this.$store.state.counter++;
-            }
         }
     }
 </script>

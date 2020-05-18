@@ -5,24 +5,24 @@
       <tr>
         <th>Title</th>
         <td>
-          <input type="text" name="title" class="title" size="40">
-          <button></button>
+          <input type="text" name="title" class="title" size="40" v-model="title" @focus="set_flag">
+          <button @click="find">find</button>
         </td>
       </tr>
       <tr>
 
         <th>Memo</th>
         <td>
-          <textarea name="content" class="content" cols="50" rows="5"></textarea>
+          <textarea name="content" class="content" cols="50" rows="5" v-model="content"></textarea>
         </td>
       </tr>
       <tr>
         <th>
         </th>
         <td>
-          <button>Save</button>
+          <button @click="insert">Save</button>
           <transition name="del">
-            <button>delete</button>
+            <button v-if="sel_flag != false" @click="remove">delete</button>
           </transition>
         </td>
       </tr>
@@ -36,6 +36,8 @@
     <hr>
 
     <div class="nav">
+      <span @click="prev">&lt;prev</span>
+      <span @click="next">next&gt;</span>
     </div>
 
   </section>
@@ -48,7 +50,7 @@
       return {
         title: '',
         content: '',
-        num_per_page: '',
+        num_per_page: 7,
         find_flag: false,
         sel_flag: false,
       };
@@ -87,7 +89,49 @@
           this.$store.commit('memo/set_page', pg);
         }
       },
+    },
 
+    methods: {
+      set_flag: function () {
+        if (this.find_flag || this.sel_flag != false) {
+          this.find_flag = false;
+          this.sel_flag = false;
+          this.title = '';
+          this.content = '';
+        }
+      },
+
+      insert: function () {
+        this.$store.commit('memo/insert', {title:this.title, content: this.content});
+        this.title = '';
+        this.content = '';
+      },
+
+      remove: function () {
+        if (this.sel_flag == false) {
+          return ;
+        } else {
+          this.$store.commit('memo/remove', this.sel_flag);
+          this.set_flag();
+        }
+      },
+
+      find: function() {
+        this.sel_flag = false;
+        this.find_flag = true;
+      },
+
+      next: function () {
+        this.page++;
+      },
+
+      prev: function () {
+        this.page--;
+      }
+    },
+
+    created: function () {
+      this.$store.commit('memo/set_page', 0);
     }
   }
 </script>
