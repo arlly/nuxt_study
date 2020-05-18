@@ -33,8 +33,8 @@ const createStore = () => {
             }
         },
       mutations: {
-          count: function (state) {
-            state.counter++;
+          count: function (state, n) {
+            state.counter += n;
           },
         reset: function (state) {
             state.counter = 0;
