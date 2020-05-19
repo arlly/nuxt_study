@@ -30,7 +30,9 @@
     <hr>
 
     <ul class="list">
-      <li></li>
+      <li v-for="item in page_items">
+        <span @click="select(item)">{{ item.title}}</span>
+      </li>
     </ul>
 
     <hr>
@@ -99,6 +101,13 @@
           this.title = '';
           this.content = '';
         }
+      },
+
+      select: function(item) {
+        this.find_flag = false;
+        this.sel_flag = item;
+        this.title = item.title;
+        this.content = item.content;
       },
 
       insert: function () {
