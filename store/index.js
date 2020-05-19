@@ -48,7 +48,10 @@ const createStore = () => {
         context.commit("count", n);
         context.commit('say', 'add' + n + '!');
       }
-    }
+    },
+    plugins: [
+      createPersistedState(),
+    ],
   })
 }
 
