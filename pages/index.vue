@@ -27,9 +27,7 @@
       <hr>
       <p>{{ $store.state.message}}</p>
       <div class="link"
-           @click.exact="$store.commit({type:'count', message:'add 1', add:1})"
-           @click.shift="$store.commit({type:'count', message:'add 3', add:3})"
-           @click.alt="$store.commit({type:'count', message:'add 5', add:5})">
+           @click="$store.dispatch('doit')">
         <a @click.stop="$store.commit('reset')" class="button--grey">{{ $store.state.counter }}</a>
       </div>
     </div>

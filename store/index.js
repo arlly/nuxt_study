@@ -23,25 +23,33 @@ export const plugins = [
 ]
 
 
-
 const createStore = () => {
-    return new Vuex.Store({
-        state: function() {
-            return {
-                message: 'This is counter by Vuex!',
-                counter: 0,
-            }
-        },
-      mutations: {
-          count: function (state, obj) {
-            state.counter += obj.add;
-            state.message = obj.message;
-          },
-        reset: function (state) {
-            state.counter = 0;
-        }
+  return new Vuex.Store({
+    state: function () {
+      return {
+        message: 'This is counter by Vuex!',
+        counter: 0,
       }
-    })
+    },
+    mutations: {
+      count: function (state, n) {
+        state.counter += n;
+      },
+      say: function(state, msg) {
+        state.message = msg;
+      },
+      reset: function (state) {
+        state.counter = 0;
+      }
+    },
+    actions: {
+      doit: function (context) {
+        var n = Math.floor(Math.random() * 10);
+        context.commit("count", n);
+        context.commit('say', 'add' + n + '!');
+      }
+    }
+  })
 }
 
 export default createStore;
