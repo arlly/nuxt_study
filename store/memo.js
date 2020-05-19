@@ -11,8 +11,9 @@ export const mutation = {
     state.memo.unshift({
       title: obj.title,
       content: obj.content,
-      creater:fmt
+      created:fmt
     });
+    console.log(state.memo)
   },
 
   set_page: function (state, p) {
@@ -25,7 +26,7 @@ export const mutation = {
       const  ob = state.memo[i];
       if (ob.title == obj.title && ob.content == obj.content && ob.created == obj.created) {
         alert('remove it ! --' + ob.title);
-        state.memo.splice(i, l);
+        state.memo.splice(i, 1);
         return;
       }
     }

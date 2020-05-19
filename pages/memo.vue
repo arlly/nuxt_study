@@ -102,7 +102,7 @@
       },
 
       insert: function () {
-        this.$store.commit('memo/insert', {title:this.title, content: this.content});
+        this.$store.commit('memo/insert', {title:this.title, content:this.content});
         this.title = '';
         this.content = '';
       },
