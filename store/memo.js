@@ -3,7 +3,7 @@ export const state = () => ({
   page: 0,
 })
 
-export const mutation = {
+export const mutations = {
 
   insert: function (state, obj) {
     var d = new Date();
